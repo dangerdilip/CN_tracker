@@ -1,0 +1,14 @@
+{
+  "name": "netsight-monorepo",
+  "version": "1.0.0",
+  "description": "NetSight - Personal Internet Observatory Monorepo",
+  "scripts": {
+    "install:all": "npm install --prefix frontend && npm install --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run start --prefix backend",
+    "dev": "npx concurrently \"npm run dev:backend\" \"npm run dev:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

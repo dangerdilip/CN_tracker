@@ -1,0 +1,234 @@
+NetSight: Personal Internet Observatory
+A Student-Built Network Intelligence Platform with Startup Potential
+1. Executive Summary
+NetSight is a web-based network diagnostic and visualization platform that empowers users to see and understand the real-time performance and path of their internet connections. By combining real-time latency monitoring with animated visual traceroutes on an interactive world map, NetSight transforms abstract network metrics into an intuitive, engaging experience. The project is designed to be built in phases: an initial browser-based performance dashboard (MVP) followed by a full-stack upgrade that introduces server-side path tracing. Beyond a resume-worthy student project, NetSight lays the foundation for a commercial SaaS product focused on personal internet observability, proactive outage detection, and ISP accountability.
+
+2. Problem Statement
+Internet users have no simple, visual way to understand why a website is slow or unreachable.
+
+Existing tools like command-line ping and traceroute are cryptic, non-interactive, and lack geographical context.
+
+When experiencing poor connectivity, users struggle to determine if the problem is with their local network, their ISP, an intermediate backbone, or the target service itself.
+
+There is no unified, consumer-friendly platform that combines real-time performance metrics, route visualization, historical tracking, and shareable diagnostic reports.
+
+3. Proposed Solution: NetSight
+NetSight bridges this gap by offering a clean, interactive map-based interface where users can:
+
+Monitor latency to multiple global targets simultaneously (the “internet weather map”).
+
+Trace the exact network path from their browser to any destination and see it animated on the map.
+
+Generate shareable reports to communicate issues to ISPs or IT support.
+
+View historical trends and compare their connection performance over time.
+
+Receive alerts when performance degrades beyond custom thresholds.
+
+The project is deliberately architected as a decoupled frontend and backend, allowing the best-of-breed free hosting services to be used, and making it an excellent demonstration of full-stack engineering skills.
+
+4. Core Features (MVP – Phase 1 & 2)
+4.1 Live Latency Dashboard
+User enters a list of target URLs or selects from preset profiles (e.g., “Gaming,” “Cloud,” “Streaming”).
+
+The frontend uses the browser’s fetch API to measure round-trip time (RTT) to each target via a small probe request (e.g., a HEAD request).
+
+Results are displayed as dynamic, pulsing markers on a Leaflet.js map.
+
+Marker color and size change in real-time: green (low latency) → yellow → red (high latency or timeout).
+
+Each marker shows a popup with current latency, packet loss (if detectable), and a mini sparkline chart of recent history.
+
+4.2 Visual Traceroute with Animated Packet
+User clicks on any target node and selects “Trace Route.”
+
+The frontend sends a request to the dedicated backend API.
+
+The backend executes a system-level traceroute (or uses a library like nodejs-traceroute), collects intermediate hop IPs, and geolocates each using a free service such as ip-api.com.
+
+A JSON array of coordinates is returned to the frontend.
+
+The map draws an animated line that progressively connects the hops, and a glowing dot (“packet”) travels along it, pausing proportionally at each hop based on measured latency.
+
+Each hop is labeled with its IP, city/country, and latency contribution.
+
+4.3 Network Health Report Generator
+A “Run Full Diagnostic” button triggers latency, traceroute, and DNS resolution tests.
+
+Results are compiled into a clean, printable HTML/CSS page that can be saved as PDF directly from the browser.
+
+The report includes a timestamp, geolocated path diagram, latency table, and a conclusion (e.g., “High latency detected at hop 7 in Frankfurt”).
+
+4.4 Save & Share Snapshots
+The entire dashboard state (targets, latencies, traceroute results) can be encoded into a base64 URL parameter or stored temporarily in a backend endpoint.
+
+Users can share this link with others, allowing them to view the exact diagnosis without re-running the tests.
+
+5. Advanced Features (Future Enhancements)
+Feature	Description	Startup Value
+Time‑Travel Mode	Slider to replay historical performance over the last 24 hours; sparklines on the map.	Essential for trend analysis and SLA verification.
+Internet Outage Overlay	Integrate live incident data from Downdetector/ThousandEyes public APIs and display as a translucent red heatmap.	Provides context: “Is it just me or is Google down?”
+User Accounts & Persistent History	Allow users to sign up, save target profiles, and store test results indefinitely using Supabase.	Foundation for a premium subscription model.
+ISP Performance Leaderboard	Anonymously aggregate data to show average latency per ISP/region.	Powerful marketing tool; drives user engagement.
+Proactive Alerting	Users set thresholds and receive notifications via Discord, email, or webhook when latency/packet loss exceeds limits.	Monetizable feature for businesses and gamers.
+Multi‑user Team Dashboards	A shared workspace where IT teams can monitor all critical endpoints collaboratively.	Direct path to B2B SaaS sales.
+API Access	Expose the backend functionality via a paid API for developers to integrate network tests into their own tools.	Additional revenue stream.
+Mobile‑Friendly PWA	Convert the web app into a Progressive Web App for one‑tap access and background monitoring.	Mass‑market consumer adoption.
+6. System Architecture & Tech Stack
+6.1 High‑Level Architecture
+text
+[ User Browser ] 
+      │
+      ▼
+[ Vercel (Frontend) ]  ── latency probes (client‑side) ──► Target Servers
+      │
+      │  (API calls for traceroute)
+      ▼
+[ Render (Backend API) ] ── traceroute + IP geolocation ──► Internet
+      │
+      ▼
+[ Supabase (Optional DB) ]  (user data, history, snapshots)
+6.2 Technology Choices
+Frontend
+
+Framework: React (Vite) or Vue.js – chosen for component reusability and state management.
+
+Map Library: Leaflet.js with OpenStreetMap tiles (free, no API key).
+
+Charts: Chart.js or Recharts for sparklines and historical graphs.
+
+Deployment: Vercel (custom domain, automatic HTTPS, global CDN).
+
+Backend
+
+Runtime: Node.js with Express or Python with FastAPI.
+
+Traceroute Execution: child_process.spawn for system traceroute command, or the nodejs-traceroute npm package.
+
+IP Geolocation: Free tier of ip-api.com (45 requests/minute, sufficient for MVP).
+
+API Design: RESTful endpoints (/api/trace?target=..., /api/diagnose).
+
+Deployment: Render Web Service (free tier with 750 hours/month, full TCP access, no cold start after inactivity? Render spins down but starts quickly; acceptable for student project).
+
+Database (Optional for later phases)
+
+Platform: Supabase (managed PostgreSQL, free tier generous).
+
+Tables: users, targets, test_results, snapshots.
+
+Other Tools
+
+PDF Generation: jsPDF or simply styled HTML for browser print.
+
+State Encoding: LZ-String to compress dashboard state for shareable links.
+
+7. Development Roadmap
+Phase 1: Browser-Only Latency Map (Weeks 1-2)
+Set up React/Vite project, deploy to Vercel.
+
+Integrate Leaflet map.
+
+Create input form for target URLs.
+
+Implement fetch-based latency probing with visual marker updates (color/size).
+
+Deliverable: Working latency dashboard with at least 5 hardcoded targets.
+
+Phase 2: Animated Traceroute Backend + Frontend (Weeks 3-4)
+Build Node.js/Express server locally, then deploy to Render.
+
+Endpoint that executes traceroute, parses output, geolocates hops.
+
+Frontend: add “Trace Route” button; fetch and store hop coordinates.
+
+Implement animated polyline drawing and moving packet icon.
+
+Deliverable: Full combo – click a target, see animated path.
+
+Phase 3: Polish & Shareability (Week 5)
+Network Health Report HTML/PDF.
+
+Shareable snapshot feature (base64 state in URL).
+
+Improved UI/UX, responsive design.
+
+Comprehensive README on GitHub with demo GIF.
+
+Deliverable: Resume-ready showcase; record a 1‑minute demo video.
+
+Phase 4: Advanced Features (Post-Resume / Startup Path)
+User authentication (Supabase Auth).
+
+Persistent history and time‑travel slider.
+
+Outage heatmap overlay.
+
+Alerting system with Discord webhooks.
+
+8. Hosting & Deployment Strategy
+For the best experience and full functionality, the platform will be split:
+
+Frontend: Deployed on Vercel (or Netlify). Handles all user interaction, map rendering, and client‑side latency tests. Environment variable for backend API URL.
+
+Backend: Deployed on Render as a Web Service. Because Vercel serverless functions cannot execute raw sockets or long‑running processes, Render’s free container‑based service is ideal. It supports traceroute and geolocation lookups without restriction. Note that the free tier sleeps after 15 minutes of inactivity, but the first request wakes it within ~30 seconds; for a demo, this is acceptable. For a production startup, a paid Hobby plan would eliminate cold starts.
+
+Why Not All on Vercel?
+The traceroute command requires either raw socket capabilities or spawning system processes, both of which are prohibited in Vercel’s sandboxed functions. Render (or Fly.io) provides the necessary environment.
+
+Optional Database:
+Supabase (free) will be added later for user data and history, connecting seamlessly to the Render backend.
+
+Domain & Branding:
+
+Purchase a custom domain (e.g., netsight.io) for professional polish.
+
+Point Vercel and Render to subdomains (app.netsight.io, api.netsight.io).
+
+9. Usefulness & Target Audience
+General Consumers: Visually diagnose why a website or game is slow. Share a report with their ISP.
+
+Gamers: Monitor latency to game servers in real time, receive alerts if ping spikes.
+
+Remote Workers & Digital Nomads: Check connectivity to corporate VPNs or cloud apps before important meetings.
+
+IT Support & System Administrators: A quick, no‑install‑required tool to troubleshoot end‑user network issues.
+
+Educators & Students: An engaging way to teach internet routing, latency, and network topologies.
+
+The combination of live latency monitoring and visual traceroute addresses a real pain point: the internet is invisible, and most people have no tool to see inside it. NetSight makes it visible.
+
+10. Startup & Monetization Potential
+NetSight evolves naturally from a student project to a viable business:
+
+Freemium SaaS: Core latency monitoring and single traceroute free; premium features (history, alerts, team dashboards) require a subscription.
+
+API as a Service: Charge developers per thousand traceroute/latency test API calls – integrated into CI/CD pipelines, uptime monitoring, and SEO tools.
+
+Enterprise Plans: Offer dedicated on‑premise agents, SLA reports, and white‑labeled dashboards for ISPs and large organizations.
+
+Crowdsourced Internet Health Data: Aggregate anonymized data to produce a “global internet weather map” accessible to news outlets and researchers, possibly monetized via licensing.
+
+Consulting & Custom Integrations: Use the platform as a portfolio piece to secure freelance or contract work in network engineering and full‑stack development.
+
+Competitive Landscape: The concept competes with tools like ThousandEyes, Catchpoint, and Pingdom, but targets a consumer/prosumer niche with a radically simpler, map‑first UX and a free tier. The visual, shareable design gives it a viral edge.
+
+11. Conclusion
+NetSight is not merely a student project—it is a carefully designed, phased product journey that begins with a simple, visually stunning internet observatory and grows into a full‑fledged SaaS platform. By splitting the architecture between a lightweight static frontend and a capable backend API, the project demonstrates mastery of modern web development, network fundamentals, and scalable cloud deployment. Every feature, from animated packet travel to shareable diagnostic reports, is chosen to make the invisible internet tangible and to solve genuine user frustrations.
+
+This document serves as a complete specification and roadmap. It is ready to be turned into actionable development sprints and, with continuous iteration, a real‑world business.
+
+12. Inspirations & Reference Links
+NetViz: Interactive network topology visualizer – https://github.com/maggie2547/NetViz
+
+Serviceradar: Distributed monitoring concepts.
+
+Leaflet.js: https://leafletjs.com
+
+IP-API: Free IP geolocation – https://ip-api.com
+
+Render: Backend hosting – https://render.com
+
+Vercel: Frontend hosting – https://vercel.com
+
+Supabase: Backend-as-a-Service – https://supabase.com

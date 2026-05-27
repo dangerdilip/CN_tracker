@@ -1,0 +1,1511 @@
+/* ----------------------------------------------------
+   NetSight Premium Cyberobservatory Stylesheet
+   Theme: Glassmorphism & Neon Cyan/Blue Cyberpunk
+   ---------------------------------------------------- */
+
+:root {
+  --neon-blue: #00e5ff;
+  --neon-cyan: #39c5cf;
+  --neon-green: #10b981;
+  --neon-orange: #f59e0b;
+  --neon-red: #ef4444;
+  --bg-darker: #08090c;
+  --bg-sidebar: rgba(10, 12, 18, 0.85);
+  --bg-glass-card: rgba(18, 22, 33, 0.65);
+  --border-glass: rgba(56, 139, 253, 0.15);
+  --border-glass-hover: rgba(0, 229, 255, 0.35);
+  --text-gray-dark: #8b949e;
+  --text-gray-light: #c9d1d9;
+}
+
+body {
+  background-color: var(--bg-darker);
+  font-family: 'Outfit', sans-serif;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ----------------------------------------------------
+   Futuristic Landing / Preview Page
+   ---------------------------------------------------- */
+.landing-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #06080b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.landing-cyber-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 229, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+.landing-card {
+  background: rgba(15, 20, 28, 0.85);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 620px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 229, 255, 0.05);
+  backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 10;
+}
+
+.landing-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.landing-globe-icon {
+  color: var(--neon-blue);
+  filter: drop-shadow(0 0 8px var(--neon-blue));
+}
+
+.landing-title {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin: 0;
+  background: linear-gradient(135deg, #fff, var(--neon-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.landing-tagline {
+  font-size: 13px;
+  color: var(--neon-cyan);
+  margin: 0;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.landing-specs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  margin: 8px 0;
+}
+
+.spec-item {
+  background: rgba(22, 27, 34, 0.5);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  padding: 14px 16px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.3s;
+}
+
+.spec-item:hover {
+  border-color: var(--border-glass-hover);
+  background: rgba(22, 27, 34, 0.8);
+  transform: translateY(-2px);
+}
+
+.spec-icon {
+  margin-bottom: 2px;
+  width: 18px;
+  height: 18px;
+}
+
+.spec-icon.blue { color: var(--neon-blue); }
+.spec-icon.cyan { color: var(--neon-cyan); }
+.spec-icon.green { color: var(--neon-green); }
+.spec-icon.orange { color: var(--neon-orange); }
+
+.spec-item h3 {
+  font-size: 12.5px;
+  font-weight: 700;
+  margin: 0;
+  color: #fff;
+}
+
+.spec-item p {
+  font-size: 11px;
+  color: var(--text-gray-dark);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.landing-start-btn {
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-cyan));
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  transition: all 0.3s;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.25);
+}
+
+.landing-start-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+}
+
+/* ----------------------------------------------------
+   Futuristic System Boot Loader Screen
+   ---------------------------------------------------- */
+.boot-loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #06080b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.boot-loader-hud {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 90%;
+  max-width: 500px;
+}
+
+.boot-loader-spinner {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid transparent;
+  border-top-color: var(--neon-blue);
+  border-bottom-color: var(--neon-blue);
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+}
+
+.spinner-center {
+  color: var(--neon-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.glow-icon {
+  filter: drop-shadow(0 0 8px var(--neon-blue));
+}
+
+.boot-loader-title {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+  margin: 0;
+}
+
+.boot-terminal-window {
+  width: 100%;
+  background: rgba(13, 17, 23, 0.9);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.boot-terminal-header {
+  background: rgba(22, 27, 34, 0.8);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.boot-terminal-header .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.boot-terminal-header .dot.red { background-color: var(--neon-red); }
+.boot-terminal-header .dot.yellow { background-color: var(--neon-orange); }
+.boot-terminal-header .dot.green { background-color: var(--neon-green); }
+
+.boot-terminal-title-text {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  color: var(--text-gray-dark);
+  margin-left: 8px;
+}
+
+.boot-terminal-body {
+  padding: 16px;
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 180px;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.terminal-line {
+  color: var(--text-gray-light);
+}
+
+.green-arrow {
+  color: var(--neon-green);
+  margin-right: 6px;
+}
+
+.blinking {
+  animation: blink 1s infinite;
+}
+
+/* ----------------------------------------------------
+   Main Application Structure
+   ---------------------------------------------------- */
+.app-container {
+  display: grid;
+  grid-template-rows: 64px 1fr;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 229, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.015) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  background: rgba(11, 12, 16, 0.9);
+  border-bottom: 1px solid var(--border-glass);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  color: var(--neon-blue);
+  filter: drop-shadow(0 0 6px var(--neon-blue));
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #fff, var(--neon-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-badge {
+  font-family: 'Fira Code', monospace;
+  font-size: 9px;
+  font-weight: bold;
+  background: rgba(0, 229, 255, 0.12);
+  color: var(--neon-blue);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.system-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-gray-dark);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--neon-green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--neon-green);
+  animation: blink 1.5s infinite;
+}
+
+/* Dashboard Workspace Grid */
+.dashboard-main {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  height: calc(100vh - 64px);
+  z-index: 2;
+}
+
+/* Sidebar with glassmorphic cards */
+.dashboard-sidebar {
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-glass);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  backdrop-filter: blur(20px);
+}
+
+.sidebar-tabs {
+  display: flex;
+  background: rgba(22, 27, 34, 0.4);
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 10px 8px;
+  color: var(--text-gray-dark);
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.tab-btn:hover {
+  color: #fff;
+  background: rgba(0, 229, 255, 0.04);
+}
+
+.tab-btn.active {
+  color: var(--neon-blue);
+  border-bottom: 2px solid var(--neon-blue);
+  background: rgba(0, 229, 255, 0.08);
+}
+
+.tab-content {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+/* My Network Card (translucent glow) */
+.network-card {
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.network-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--neon-blue);
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--border-glass);
+  padding-bottom: 8px;
+}
+
+.network-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.network-detail {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.network-detail .label {
+  color: var(--text-gray-dark);
+}
+
+.network-detail .value {
+  font-family: 'Fira Code', monospace;
+  color: #fff;
+  font-size: 12px;
+}
+
+.network-detail .value.glow-blue {
+  color: var(--neon-blue);
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+
+.sidebar-loading-pulse {
+  font-size: 12px;
+  color: var(--text-gray-dark);
+  text-align: center;
+  padding: 8px 0;
+  animation: pulse-op 1.5s infinite;
+}
+
+.connection-error-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: var(--neon-red);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+/* Preset Selectors */
+.preset-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-title {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-gray-dark);
+  letter-spacing: 1px;
+}
+
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.preset-btn {
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-glass);
+  color: #fff;
+  padding: 10px 6px;
+  border-radius: 6px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.preset-btn:hover, .preset-btn.active {
+  border-color: var(--neon-blue);
+  background: rgba(0, 229, 255, 0.1);
+  color: var(--neon-blue);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.25);
+}
+
+/* Add Node Input styling */
+.add-node-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group {
+  display: flex;
+  gap: 8px;
+}
+
+.input-style {
+  flex: 1;
+  background: rgba(13, 17, 23, 0.85);
+  border: 1px solid var(--border-glass);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12.5px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input-style:focus {
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
+}
+
+.btn-primary {
+  background: var(--neon-blue);
+  color: #000;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12.5px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.25);
+}
+
+.btn-primary:hover {
+  background: #33ebff;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.55);
+}
+
+.btn-primary:disabled {
+  background: #21262d;
+  color: var(--text-gray-dark);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Target Observatory list styling */
+.active-observatories-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.target-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.target-card {
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.target-card:hover {
+  border-color: var(--border-glass-hover);
+  background: rgba(18, 22, 33, 0.85);
+  box-shadow: 0 4px 15px rgba(0, 229, 255, 0.05);
+}
+
+.target-card-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.target-title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.target-url {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.target-ip {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  color: var(--text-gray-dark);
+}
+
+.sparkline-wrapper {
+  height: 20px;
+  width: 100px;
+}
+
+.sparkline-mini {
+  width: 100%;
+  height: 100%;
+}
+
+.target-metrics {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.latency-pill {
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  font-weight: 800;
+  text-align: center;
+  min-width: 62px;
+}
+
+.latency-pill.green { background: rgba(16, 185, 129, 0.12); color: var(--neon-green); border: 1px solid rgba(16, 185, 129, 0.3); }
+.latency-pill.orange { background: rgba(245, 158, 11, 0.12); color: var(--neon-orange); border: 1px solid rgba(245, 158, 11, 0.3); }
+.latency-pill.red { background: rgba(239, 68, 68, 0.12); color: var(--neon-red); border: 1px solid rgba(239, 68, 68, 0.3); }
+.latency-pill.offline { background: rgba(107, 114, 128, 0.12); color: var(--text-gray-dark); border: 1px solid rgba(107, 114, 128, 0.3); }
+.latency-pill.loading { background: rgba(0, 229, 255, 0.12); color: var(--neon-blue); border: 1px solid rgba(0, 229, 255, 0.3); animation: pulse-op 1.5s infinite; }
+
+.action-buttons-group {
+  display: flex;
+  gap: 6px;
+}
+
+.action-btn {
+  background: rgba(33, 38, 45, 0.8);
+  border: 1px solid var(--border-glass);
+  color: var(--text-gray-dark);
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.action-btn:hover {
+  border-color: var(--neon-blue);
+  color: var(--neon-blue);
+  box-shadow: 0 0 6px rgba(0, 229, 255, 0.2);
+}
+
+.action-btn.delete-btn:hover {
+  border-color: var(--neon-red);
+  color: var(--neon-red);
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.2);
+}
+
+/* ----------------------------------------------------
+   DNS resolver tab
+   ---------------------------------------------------- */
+.dns-panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dns-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dns-loader-pulse {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 0;
+  color: var(--text-gray-dark);
+  font-size: 13px;
+}
+
+.dns-results-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.dns-record-card {
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.dns-record-type {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--neon-cyan);
+  border-bottom: 1px solid var(--border-glass);
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+.dns-record-value {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  color: var(--text-gray-light);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* ----------------------------------------------------
+   Speed Test elements
+   ---------------------------------------------------- */
+.speed-test-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.speed-test-action-box {
+  display: flex;
+  justify-content: center;
+}
+
+.speed-run-btn {
+  width: 100%;
+  padding: 12px;
+}
+
+.radial-speed-progress-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+}
+
+.radial-spinner {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radial-spinner-center {
+  width: 96px;
+  height: 96px;
+  background: var(--bg-darker);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--border-glass);
+}
+
+.radial-percent {
+  font-family: 'Fira Code', monospace;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--neon-blue);
+}
+
+.radial-label {
+  font-size: 12px;
+  color: var(--text-gray-dark);
+}
+
+.speed-results-hud {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.hud-metric-card {
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  padding: 18px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.hud-metric-icon {
+  color: var(--text-gray-dark);
+}
+
+.hud-metric-card.speed .hud-metric-icon {
+  color: var(--neon-blue);
+  filter: drop-shadow(0 0 6px var(--neon-blue));
+}
+
+.hud-metric-value {
+  font-family: 'Fira Code', monospace;
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.hud-metric-value.glow-blue {
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.45);
+}
+
+.hud-metric-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-gray-dark);
+  letter-spacing: 0.5px;
+}
+
+/* ----------------------------------------------------
+   Diagnostics Log
+   ---------------------------------------------------- */
+.diagnostics-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+.diagnostics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.diagnostic-score-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.diagnostic-score-badge .score-label {
+  color: var(--text-gray-dark);
+}
+
+.diagnostic-score-badge .score-value {
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.diagnostic-score-badge .score-value.green { color: var(--neon-green); }
+.diagnostic-score-badge .score-value.orange { color: var(--neon-orange); }
+.diagnostic-score-badge .score-value.red { color: var(--neon-red); }
+
+.diagnostic-console-wrapper {
+  background: #040507;
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  padding: 16px;
+  height: 380px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+}
+
+.console-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--text-gray-dark);
+  height: 100%;
+  font-family: 'Outfit', sans-serif;
+  text-align: center;
+}
+
+.console-line {
+  display: flex;
+  gap: 8px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.console-line.info { color: var(--text-gray-light); }
+.console-line.success { color: var(--neon-green); }
+.console-line.warning { color: var(--neon-orange); }
+.console-line.error { color: var(--neon-red); }
+
+.line-time {
+  color: var(--text-gray-dark);
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------
+   Right-side Viewport (Map & Drawer)
+   ---------------------------------------------------- */
+.dashboard-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  background-color: var(--bg-darker);
+  overflow: hidden;
+}
+
+.map-wrapper {
+  flex: 1;
+  position: relative;
+  padding: 12px 12px 6px 12px;
+}
+
+/* Interactive bottom hop sequences drawer */
+.diagnostic-panel {
+  height: 200px;
+  background: rgba(13, 17, 23, 0.95);
+  border-top: 1px solid var(--border-glass);
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  backdrop-filter: blur(12px);
+  z-index: 10;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-glass);
+  padding-bottom: 6px;
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--neon-blue);
+  letter-spacing: 0.5px;
+}
+
+.panel-title-icon {
+  color: var(--neon-blue);
+  filter: drop-shadow(0 0 4px var(--neon-blue));
+}
+
+.panel-refresh-btn {
+  background: none;
+  border: none;
+  color: var(--text-gray-dark);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.panel-refresh-btn:hover {
+  color: var(--neon-blue);
+}
+
+.hops-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 8px 0;
+  white-space: nowrap;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.hops-empty-state {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-gray-dark);
+  font-size: 13px;
+  padding: 20px 0;
+}
+
+.hop-wrapper-flow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hop-item {
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 6px;
+  padding: 10px 14px;
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.hop-item:hover {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 8px rgba(57, 197, 207, 0.15);
+}
+
+.hop-num {
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  background: var(--neon-blue);
+  color: #000;
+  font-size: 9px;
+  font-weight: 800;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 6px var(--neon-blue);
+}
+
+.hop-ip {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 4px;
+}
+
+.hop-geo {
+  font-size: 10px;
+  color: var(--text-gray-light);
+}
+
+.hop-isp {
+  font-size: 9px;
+  color: var(--text-gray-dark);
+}
+
+.hop-arrow-icon {
+  color: var(--neon-cyan);
+}
+
+/* Custom leaflet Popups */
+.map-popup-custom {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: 'Outfit', sans-serif;
+  color: #fff;
+}
+
+.map-popup-custom.hop {
+  gap: 4px;
+  min-width: 160px;
+}
+
+.popup-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.popup-subtitle {
+  font-size: 10px;
+  color: var(--text-gray-dark);
+}
+
+.popup-latency-block {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  border-top: 1px solid var(--border-glass);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+
+.popup-latency-block .value {
+  font-weight: 800;
+  font-family: 'Fira Code', monospace;
+}
+
+.popup-latency-block .value.green { color: var(--neon-green); }
+.popup-latency-block .value.orange { color: var(--neon-orange); }
+.popup-latency-block .value.red { color: var(--neon-red); }
+
+.btn-popup-action {
+  background: var(--neon-blue);
+  color: #000;
+  border: none;
+  padding: 6px;
+  border-radius: 4px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s;
+}
+
+.btn-popup-action:hover {
+  background: #33ebff;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+
+.hop-meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  gap: 12px;
+}
+
+.hop-meta-row span:first-child {
+  color: var(--text-gray-dark);
+}
+
+.hop-meta-row code {
+  font-family: 'Fira Code', monospace;
+  color: var(--neon-cyan);
+}
+
+/* ----------------------------------------------------
+   Animations & Classes
+   ---------------------------------------------------- */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes pulse-op {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* DivIcon pulsars */
+.map-pulse-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pulse-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  position: relative;
+}
+
+.pulse-dot.home {
+  width: 16px;
+  height: 16px;
+  border: 2.5px solid #fff;
+}
+
+.pulse-ring {
+  border: 3px solid currentColor;
+  border-radius: 30px;
+  height: 28px;
+  width: 28px;
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  animation: map-pulsate 1.5s ease-out infinite;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes map-pulsate {
+  0% {
+    transform: scale(0.1, 0.1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: scale(1.3, 1.3);
+    opacity: 0;
+  }
+}
+
+/* Active Hop Streaming Progress Bar */
+.active-hop-progress-bg {
+  width: 140px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-left: 12px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.active-hop-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--neon-blue), var(--neon-cyan));
+  width: 0%;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 6px var(--neon-blue);
+}
+
+/* Timeout Hop Styling */
+.hop-item.timeout {
+  border: 1px dashed rgba(239, 68, 68, 0.35);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.hop-item.timeout:hover {
+  border-color: var(--neon-red);
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.2);
+}
+
+.hop-item.timeout .hop-ip {
+  color: var(--neon-red);
+}
+
+.hop-item.timeout .hop-geo {
+  color: var(--neon-red);
+  opacity: 0.7;
+}
+
+.hop-item.timeout .hop-num {
+  background: var(--neon-red);
+  color: #fff;
+  box-shadow: 0 0 6px var(--neon-red);
+}
+
+/* Custom Cyberpunk Scrollbar Rules */
+.hops-container::-webkit-scrollbar,
+.diagnostic-console-wrapper::-webkit-scrollbar,
+.tab-content::-webkit-scrollbar,
+.boot-terminal-body::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.hops-container::-webkit-scrollbar-track,
+.diagnostic-console-wrapper::-webkit-scrollbar-track,
+.tab-content::-webkit-scrollbar-track,
+.boot-terminal-body::-webkit-scrollbar-track {
+  background: rgba(11, 12, 16, 0.5);
+  border-radius: 3px;
+}
+
+.hops-container::-webkit-scrollbar-thumb,
+.diagnostic-console-wrapper::-webkit-scrollbar-thumb,
+.tab-content::-webkit-scrollbar-thumb,
+.boot-terminal-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.15);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hops-container::-webkit-scrollbar-thumb:hover,
+.diagnostic-console-wrapper::-webkit-scrollbar-thumb:hover,
+.tab-content::-webkit-scrollbar-thumb:hover,
+.boot-terminal-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.5);
+  box-shadow: 0 0 8px var(--neon-blue);
+}
+
+/* Private Subnet Info Tip styling */
+.private-node-info-tip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(57, 197, 207, 0.08);
+  border: 1px solid rgba(57, 197, 207, 0.25);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  color: var(--neon-cyan);
+  cursor: help;
+  transition: all 0.2s;
+}
+
+.private-node-info-tip:hover {
+  background: rgba(57, 197, 207, 0.15);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 8px rgba(57, 197, 207, 0.2);
+}
+
+.info-tip-icon {
+  color: var(--neon-cyan);
+}
+
+/* Active Scanning Hop styling and keyframes */
+.hop-item.scanning-hop {
+  border: 1px dashed rgba(57, 197, 207, 0.45);
+  background: rgba(10, 12, 18, 0.85);
+  box-shadow: 0 0 10px rgba(57, 197, 207, 0.05);
+}
+
+.scanning-dot-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--neon-cyan);
+  box-shadow: 0 0 6px var(--neon-cyan);
+  animation: pulse-scanning 1.2s infinite ease-in-out;
+  margin-top: 4px;
+  margin-bottom: 2px;
+}
+
+@keyframes pulse-scanning {
+  0%, 100% {
+    transform: scale(0.85);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+    filter: drop-shadow(0 0 4px var(--neon-cyan));
+  }
+}
+
+.active-scan-pulse {
+  background: var(--neon-cyan) !important;
+  box-shadow: 0 0 8px var(--neon-cyan) !important;
+  animation: blink 1.2s infinite;
+}
+
+/* Fallback indicator badge in My Network Gateway card */
+.fallback-badge {
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--neon-orange);
+  border: 1px solid var(--neon-orange);
+  background: rgba(245, 158, 11, 0.12);
+  padding: 1px 5px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.1);
+}
+
+/* DNS resolver error box and states */
+.dns-error-box {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 16px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.dns-error-icon {
+  color: var(--neon-red);
+  filter: drop-shadow(0 0 4px var(--neon-red));
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.dns-error-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.dns-error-text strong {
+  font-size: 13px;
+  color: #fff;
+}
+
+.dns-error-text span {
+  font-size: 11px;
+  color: var(--text-gray-dark);
+}
+
+/* Connection speed benchmark warning disclaimer */
+.speed-disclaimer-card {
+  background: rgba(56, 139, 253, 0.04);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  animation: fadeIn 0.4s ease-out;
+  text-align: left;
+}
+
+.speed-disclaimer-card .disclaimer-icon {
+  color: var(--neon-blue);
+  filter: drop-shadow(0 0 3px var(--neon-blue));
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.speed-disclaimer-card .disclaimer-text {
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--text-gray-dark);
+}
+
+.speed-disclaimer-card .disclaimer-text strong {
+  color: var(--text-gray-light);
+}
+
+/* Clear Traceroute hover visual color */
+.panel-refresh-btn.clear-btn:hover {
+  color: var(--neon-red) !important;
+  filter: drop-shadow(0 0 4px var(--neon-red));
+}
+
+
