@@ -294,7 +294,12 @@ app.get('/api/speedtest/download', (req, res) => {
 // System / client health details
 app.get('/api/my-ip', async (req, res) => {
   try {
-    const response = await axios.get('http://ip-api.com/json', { timeout: 3000 });
+    let clientIp = req.headers['x-forwarded-for'] || '';
+    if (clientIp && clientIp.includes(',')) {
+      clientIp = clientIp.split(',')[0].trim();
+    }
+    const url = clientIp ? `http://ip-api.com/json/${clientIp}` : 'http://ip-api.com/json';
+    const response = await axios.get(url, { timeout: 3000 });
     res.json(response.data);
   } catch (err) {
     // default Ranchi placeholder
