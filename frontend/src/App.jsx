@@ -132,9 +132,9 @@ function App() {
   // Presets mapping
   const presets = {
     gaming: [
-      { name: 'Steam Asia/India', url: 'sgp-1.valve.net', lat: 1.3521, lng: 103.8198 },
-      { name: 'League of Legends NA', url: '104.160.131.3', lat: 34.0522, lng: -118.2437 },
-      { name: 'Valorant EU', url: '162.249.79.1', lat: 52.3676, lng: 4.9041 }
+      { name: 'Steam Store Global', url: 'store.steampowered.com', lat: 47.6062, lng: -122.3321 },
+      { name: 'Blizzard Battle.net', url: 'battle.net', lat: 33.6704, lng: -117.7760 },
+      { name: 'Hypixel Minecraft', url: 'mc.hypixel.net', lat: 41.8781, lng: -87.6298 }
     ],
     cloud: [
       { name: 'Cloudflare DNS', url: 'cloudflare.com', lat: 37.7749, lng: -122.4194 },
